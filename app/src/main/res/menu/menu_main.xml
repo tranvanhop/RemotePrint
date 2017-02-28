@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_system"
+        android:icon="@mipmap/ic_system"
+        android:title="@string/title_system">
+    </item>
+    <item
+        android:id="@+id/menu_product"
+        android:icon="@mipmap/ic_product"
+        android:title="@string/title_product">
+    </item>
+
+    <item
+        android:id="@+id/menu_order"
+        android:icon="@mipmap/ic_order"
+        android:title="@string/title_order">
+    </item>
+    <item
+        android:id="@+id/menu_report"
+        android:icon="@mipmap/ic_report"
+        android:title="@string/title_report">
+    </item>
+
+</menu>

@@ -1,0 +1,98 @@
+<!--
+  ~ Hewlett-Packard Company
+  ~ All rights reserved.
+  ~
+  ~ This file, its contents, concepts, methods, behavior, and operation
+  ~ (collectively the "Software") are protected by trade secret, patent,
+  ~ and copyright laws. The use of the Software is governed by a license
+  ~ agreement. Disclosure of the Software to third parties, in any form,
+  ~ in whole or in part, is expressly prohibited except as authorized by
+  ~ the license agreement.
+  -->
+
+<resources>
+    <string name="app_name">Remote Print</string>
+    <string name="action_settings">Settings</string>
+    <string name="print">Print</string>
+    <string name="print_settings">PRINT SETTINGS</string>
+    <string name="printing_help">PRINTING HELP</string>
+    <string name="print_plugin_manager">Print Plugin Manager</string>
+    <string name="print_plugin_manager_description">Help users install their printers PSP</string>
+    <string name="print_help_menu">Print Help Menu</string>
+    <string name="print_help_menu_description">Provide help content within your application</string>
+    <string name="custom_data_title">Please enter the custom data below</string>
+    <string name="custom_data_tag">Tag</string>
+    <string name="custom_data_value">Value</string>
+    <string name="asset">Asset</string>
+    <string name="layout_option">PAGE LAYOUT</string>
+    <string name="layout_center">Center</string>
+    <string name="layout_center_top">Center Top</string>
+    <string name="layout_crop">Fill</string>
+    <string name="layout_fit">Fit</string>
+    <string name="layout_top_left">Top Left</string>
+    <string name="margin_option">PAGE MARGINS</string>
+    <string name="layout_with_margin">1/2 Inch</string>
+    <string name="layout_without_margin">None</string>
+    <string name="layout_with_top_margin">Top Only</string>
+    <string name="metrics_option">METRICS</string>
+    <string name="unique_device_id_per_app">UNIQUE DEVICE ID</string>
+    <string name="content_option">CONTENT TYPE</string>
+    <string name="content_pdf">PDF</string>
+    <string name="content_image">Image</string>
+    <string name="lib_font">fonts/HPSimplified_Rg.ttf</string>
+    <string name="add_constom_data">Add Data</string>
+    <string name="not_encrypted">Not Encrypted</string>
+    <string name="unique_per_app">Unique Per App</string>
+    <string name="unique_per_vendor">Unique Per Vendor</string>
+    <string name="select_a_file">SELECT A FILE</string>
+
+    <string name="title_order">Hóa đơn</string>
+    <string name="title_system">Hệ thống</string>
+    <string name="title_report">Báo cáo</string>
+    <string name="title_product">Sản phẩm</string>
+    <string name="title_active">Active</string>
+
+    <string name="title_system_info">Thông tin</string>
+    <string name="title_system_print">Máy In</string>
+
+    <string name="hint_key">Key</string>
+    <string name="btn_submit">Active</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+
+
+    <string name="text_bluetooth_off">Bluetooth is Off</string>
+    <string name="text_bluetooth_on">Bluetooth is On</string>
+
+    <string name="text_scan">Scan</string>
+    <string name="text_connect">Connect</string>
+    <string name="text_disconnect">Disconnect</string>
+
+    <string name="text_enable_bluetooth">Enable Bluetooth</string>
+    <string name="text_disable_bluetooth">Disable Bluetooth</string>
+
+    <string name="text_scan_devices">Scan Devices</string>
+    <string name="text_stop_scan">Scan Devices</string>
+
+    <string name="text_list_paired_devices">Paired Devices</string>
+    <string name="text_list_devices">List of Devices</string>
+
+    <string name="text_pair">Pair</string>
+
+
+    <string name="text_print_demo">Print Demo</string>
+    <string name="text_print_barcode">Print Barcode</string>
+    <string name="text_print_image">Print Image</string>
+    <string name="text_print_receipt">Print Receipt</string>
+    <string name="text_print_text">Print</string>
+
+    <string name="text_hint_name">Tên CTY/Đơn vị</string>
+    <string name="text_hint_address">Địa chỉ</string>
+    <string name="text_hint_cashier">Thu ngân</string>
+    <string name="text_hint_version">Phiên bản</string>
+
+
+    <string name="text_edit">Edit</string>
+    <string name="text_cancel">Hủy</string>
+    <string name="text_save">Lưu</string>
+</resources>

@@ -1,0 +1,40 @@
+<!--
+  ~ Hewlett-Packard Company
+  ~ All rights reserved.
+  ~
+  ~ This file, its contents, concepts, methods, behavior, and operation
+  ~ (collectively the "Software") are protected by trade secret, patent,
+  ~ and copyright laws. The use of the Software is governed by a license
+  ~ agreement. Disclosure of the Software to third parties, in any form,
+  ~ in whole or in part, is expressly prohibited except as authorized by
+  ~ the license agreement.
+  -->
+
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="component_margin">16dp</dimen>
+    <dimen name="component_padding">16dp</dimen>
+    <integer name="number_column_grid_view">2</integer>
+    <dimen name="grid_view_item_img_width">128dp</dimen>
+    <dimen name="grid_view_item_img_height">128dp</dimen>
+    <dimen name="grid_view_item_txt_font_size">16sp</dimen>
+    <dimen name="grid_view_item_txt_margin_top">4dp</dimen>
+    <dimen name="grid_view_item_padding">4dp</dimen>
+    <dimen name="grid_view_height">480dp</dimen>
+
+    <dimen name="list_view_item_name_txt_font_size">16sp</dimen>
+    <dimen name="list_view_item_address_txt_font_size">12sp</dimen>
+
+    <dimen name="separator">1dp</dimen>
+    <dimen name="separator_margin">8dp</dimen>
+    <dimen name="btn_font_size">16sp</dimen>
+
+    <dimen name="button_style_padding">2dp</dimen>
+    <dimen name="button_style_stroke">2dp</dimen>
+    <integer name="button_style_angle">90</integer>
+
+    <dimen name="button_margin">4dp</dimen>
+    <dimen name="text_font_size_device">14sp</dimen>
+</resources>
