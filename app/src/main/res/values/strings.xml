@@ -50,7 +50,12 @@
     <string name="title_system">Hệ thống</string>
     <string name="title_report">Báo cáo</string>
     <string name="title_product">Sản phẩm</string>
+    <string name="title_product_add">Thêm sản phẩm</string>
     <string name="title_active">Active</string>
+
+    <string name="cancel">Hủy</string>
+    <string name="save">Lưu</string>
+    <string name="add">Thêm</string>
 
     <string name="title_system_info">Thông tin</string>
     <string name="title_system_print">Máy In</string>
@@ -91,8 +96,21 @@
     <string name="text_hint_cashier">Thu ngân</string>
     <string name="text_hint_version">Phiên bản</string>
 
+    <string name="text_hint_product_name">Tên sản phẩm</string>
+    <string name="text_hint_product_price">Giá</string>
+    <string name="text_hint_product_unit">Đơn vị</string>
+    <string name="text_hint_product_tag">Tag search</string>
+    <string name="text_hint_product_thumbnail">Thumbnail</string>
+    <string name="text_hint_product_image">Hình</string>
 
     <string name="text_edit">Edit</string>
     <string name="text_cancel">Hủy</string>
     <string name="text_save">Lưu</string>
+
+    <string name="product_list">Danh sách</string>
+    <string name="product_add">Thêm mới</string>
+    <string name="product_unit">Đơn vị</string>
+
+    <string name="button_choose">Chọn ảnh</string>
+
 </resources>
