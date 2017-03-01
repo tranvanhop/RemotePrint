@@ -28,14 +28,14 @@
         android:layout_below="@+id/separator"/>
 
     <EditText
+        style="@style/editText"
         android:id="@+id/edtPrint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:layout_below="@+id/imgPreview"
-        android:textColor="@color/PluginFontColorBlack"
         android:padding="@dimen/component_padding"
-        android:gravity="left"
-        android:hint="@string/app_name"/>
+        android:hint="@string/app_name">
+
+    </EditText>
 
     <Button
         android:id="@+id/btnEnable"

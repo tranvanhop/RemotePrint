@@ -49,6 +49,7 @@
             android:label="@string/title_system"
             android:parentActivityName="com.hp.mss.print.activity.MainActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme">
 
             <meta-data

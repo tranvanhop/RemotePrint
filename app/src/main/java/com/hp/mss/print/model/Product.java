@@ -6,23 +6,27 @@ package com.hp.mss.print.model;
 
 public class Product {
 
+    public Product() {
+    }
+
     public Product(String name, float price, int unitId, String tag, String thumbnail, String image) {
         this.name = name;
         this.price = price;
         this.unitId = unitId;
         this.tag = tag;
+
         this.thumbnail = thumbnail;
         this.image = image;
     }
 
-    private int id;
-    private String name;
-    private float price;
-    private int unitId;
-    private String tag;
-    private String thumbnail;
-    private String image;
-    private String createAt;
+    private int id = 0;
+    private String name = "";
+    private float price = 0;
+    private int unitId = 0;
+    private String tag = "";
+    private String thumbnail = "";
+    private String image = "";
+    private String createAt = "";
 
     public float getPrice() {
         return price;

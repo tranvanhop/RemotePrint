@@ -2,8 +2,6 @@ package com.hp.mss.print.activity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +14,7 @@ import android.view.MenuItem;
 
 import com.hp.mss.print.R;
 import com.hp.mss.print.dialog.ProductAddDialog;
+import com.hp.mss.print.helper.SQLiteHandler;
 import com.hp.mss.print.model.Product;
 
 import static com.hp.mss.print.dialog.ProductAddDialog.PICK_IMAGE;
@@ -24,11 +23,13 @@ import static com.hp.mss.print.dialog.ProductAddDialog.PICK_THUMBNAIL;
 public class ProductActivity extends AppCompatActivity {
 
     public interface OnListenerProduct {
-        public abstract void setThumbnail(String filePath, Bitmap b);
-        public abstract void setImage(String filePath, Bitmap b);
+        public abstract void setThumbnail(String filePath);
+        public abstract void setImage(String filePath);
     }
 
     private OnListenerProduct mListenerProduct;
+    private SQLiteHandler db;
+    ProductAddDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class ProductActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        db = new SQLiteHandler(this);
     }
 
     @Override
@@ -71,7 +74,7 @@ public class ProductActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actionAdd:
-                ProductAddDialog dialog = new ProductAddDialog(ProductActivity.this, mProductAddDialogOnListener);
+                dialog = new ProductAddDialog(ProductActivity.this, mProductAddDialogOnListener);
                 dialog.show();
                 return true;
 
@@ -84,10 +87,50 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode) {
+            case PICK_THUMBNAIL:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(
+                            selectedImage, filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String filePath = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    mListenerProduct.setThumbnail(filePath);
+                }
+                break;
+            case PICK_IMAGE:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(
+                            selectedImage, filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String filePath = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    mListenerProduct.setImage(filePath);
+                }
+                break;
+        }
+    }
+
     ProductAddDialog.OnListener mProductAddDialogOnListener = new ProductAddDialog.OnListener() {
         @Override
         public void onAddClick(Product p) {
-
+            db.addProduct(p);
         }
 
         @Override
@@ -129,65 +172,4 @@ public class ProductActivity extends AppCompatActivity {
             startActivityForResult(chooserIntent, PICK_IMAGE);
         }
     };
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch(requestCode) {
-            default:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getContentResolver().query(
-                            selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-
-                    Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
-                    mListenerProduct.setThumbnail(filePath, yourSelectedImage);
-                }
-            case PICK_THUMBNAIL:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getContentResolver().query(
-                            selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-
-                    Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
-                    mListenerProduct.setThumbnail(filePath, yourSelectedImage);
-                }
-                break;
-            case PICK_IMAGE:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getContentResolver().query(
-                            selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-
-                    Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
-                    mListenerProduct.setImage(filePath, yourSelectedImage);
-                }
-                break;
-        }
-    }
 }

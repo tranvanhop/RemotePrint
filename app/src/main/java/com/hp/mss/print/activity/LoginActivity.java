@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtKey;
     private ProgressDialog pDialog;
     private SessionManager session;
-    private SQLiteHandler db;
 
     public static final String TAG_REQUEST = "TRANVANHOP";
     StringRequest stringRequest;
@@ -56,9 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
-
-        // SQLite database handler
-        db = new SQLiteHandler(getApplicationContext());
 
         // Session manager
         session = new SessionManager(getApplicationContext());
@@ -124,15 +120,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (!error) {
                                 session.setLogin(true);
-
-                                String key = jObj.getString(TAG.KEY);
-                                String deviceId = jObj.getString(TAG.DEVICE_ID);
-                                String expire_at = jObj.getString(TAG.EXPIRE_AT);
-                                String created_at = jObj.getString(TAG.CREATE_AT);
-
-                                db.addUser(key, deviceId, expire_at, created_at);
                                 Toast.makeText(getApplicationContext(), "Active thành công !", Toast.LENGTH_LONG).show();
-                                // Launch main activity
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();

@@ -15,7 +15,6 @@
             style="@style/editText"
             android:id="@+id/edtName"
             android:layout_width="match_parent"
-            android:enabled="true"
             android:hint="@string/text_hint_product_name"
             android:inputType="text"/>
 
@@ -23,7 +22,6 @@
             style="@style/editText"
             android:id="@+id/edtPrice"
             android:layout_width="match_parent"
-            android:enabled="true"
             android:hint="@string/text_hint_product_price"
             android:inputType="number"/>
 
@@ -31,14 +29,12 @@
             android:id="@+id/spUnit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/component_margin"
-            android:padding="@dimen/component_padding"/>
+            android:layout_marginBottom="@dimen/component_margin" />
 
         <EditText
             style="@style/editText"
             android:id="@+id/edtTag"
             android:layout_width="match_parent"
-            android:enabled="true"
             android:hint="@string/text_hint_product_tag"
             android:inputType="textCapWords"/>
 
@@ -48,11 +44,17 @@
             android:padding="@dimen/component_padding">
 
             <TextView
-                android:id="@+id/txtThumbnail"
+                android:id="@+id/txtTempThumbnail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:hint="@string/text_hint_product_thumbnail"/>
+
+            <TextView
+                android:id="@+id/txtThumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
 
             <Button
                 style="@style/button"
@@ -73,11 +75,17 @@
             android:padding="@dimen/component_padding">
 
             <TextView
-                android:id="@+id/txtImage"
+                android:id="@+id/txtTempImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:hint="@string/text_hint_product_image"/>
+
+            <TextView
+                android:id="@+id/txtImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
 
             <Button
                 style="@style/button"

@@ -37,7 +37,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.hp.mss.print.R;
-import com.hp.mss.print.adapter.SpinnerAdapter;
+import com.hp.mss.print.adapter.SpinnerBlueToothAdapter;
 import com.hp.mss.print.helper.P25ConnectionException;
 import com.hp.mss.print.helper.P25Connector;
 import com.hp.mss.print.helper.SessionManager;
@@ -59,7 +59,7 @@ public class TabFragmentSystemPrintLayout extends Fragment {
     private ImageView imgPreview;
     private EditText edtPrint;
     DeviceItem[] deviceItems;
-    SpinnerAdapter spinnerAdapter = null;
+    SpinnerBlueToothAdapter spinnerAdapter = null;
 
     private ProgressDialog mProgressDlg;
     private ProgressDialog mConnectingDlg;
@@ -287,7 +287,7 @@ public class TabFragmentSystemPrintLayout extends Fragment {
     private void updateDeviceList() {
 
         deviceItems = getDeviceItems(mDeviceList);
-        spinnerAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_device_item, deviceItems);
+        spinnerAdapter = new SpinnerBlueToothAdapter(getActivity(), R.layout.spinner_device_item, deviceItems);
         spinnerAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         spDevice.setAdapter(spinnerAdapter);
 

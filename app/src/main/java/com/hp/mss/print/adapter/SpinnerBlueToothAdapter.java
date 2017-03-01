@@ -16,14 +16,14 @@ import com.hp.mss.print.R;
 import com.hp.mss.print.item.DeviceItem;
 
 /***** Adapter class extends with ArrayAdapter ******/
-public class SpinnerAdapter extends ArrayAdapter<DeviceItem>{
+public class SpinnerBlueToothAdapter extends ArrayAdapter<DeviceItem>{
 
     Context context = null;
     DeviceItem[] data = null;
     int layoutResourceId;
     ViewGroup viewGroup;
 
-    public SpinnerAdapter(Context context, int layoutResourceId, DeviceItem[] data)
+    public SpinnerBlueToothAdapter(Context context, int layoutResourceId, DeviceItem[] data)
     {
         super(context, layoutResourceId, data);
         this.context = context;
@@ -56,6 +56,7 @@ public class SpinnerAdapter extends ArrayAdapter<DeviceItem>{
 
             holder = new RecordHolder();
             holder.txtName = (TextView) row.findViewById(R.id.txtName);
+
 
             row.setTag(holder);
         }

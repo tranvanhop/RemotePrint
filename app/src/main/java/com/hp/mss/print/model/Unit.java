@@ -8,9 +8,11 @@ public class Unit {
     int id;
     String name;
 
-    public Unit(int id, String name) {
-        this.id = id;
+    public Unit(String name) {
         this.name = name;
+    }
+
+    public Unit() {
     }
 
     public int getId() {

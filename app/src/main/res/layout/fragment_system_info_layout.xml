@@ -12,136 +12,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/component_padding"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <EditText
+                style="@style/editText"
+                android:id="@+id/edtName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/component_padding">
+                android:hint="@string/text_hint_name"/>
 
-                <LinearLayout
-                    android:id="@+id/llName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            <View
+                style="@style/separator" />
 
-                    <EditText
-                        style="@style/editText"
-                        android:id="@+id/edtName"
-                        android:layout_weight="1"
-                        android:layout_marginRight="@dimen/component_margin"
-                        android:hint="@string/text_hint_name"/>
-
-                    <Button
-                        style="@style/button"
-                        android:id="@+id/btnName"
-                        android:text="@string/text_edit" />
-
-                </LinearLayout>
-
-                <View
-                    style="@style/separator"
-                    android:layout_below="@+id/llName"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <EditText
+                style="@style/editText"
+                android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/component_padding">
+                android:layout_marginTop="@dimen/component_margin"
+                android:hint="@string/text_hint_address"/>
 
-                <LinearLayout
-                    android:id="@+id/llAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            <View
+                style="@style/separator" />
 
-                    <EditText
-                        style="@style/editText"
-                        android:id="@+id/edtAddress"
-                        android:layout_weight="1"
-                        android:layout_marginRight="@dimen/component_margin"
-                        android:hint="@string/text_hint_address"/>
+            <EditText
+                style="@style/editText"
+                android:id="@+id/edtCashier"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/component_margin"
+                android:hint="@string/text_hint_cashier"/>
 
-                    <Button
-                        style="@style/button"
-                        android:id="@+id/btnAddress"
-                        android:text="@string/text_edit" />
+            <View
+                style="@style/separator"/>
 
-                </LinearLayout>
+            <EditText
+                style="@style/editText"
+                android:id="@+id/edtVersion"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/component_margin"
+                android:hint="@string/text_hint_version"/>
 
-                <View
-                    style="@style/separator"
-                    android:layout_below="@+id/llAddress"/>
-
-            </RelativeLayout>
+            <View
+                style="@style/separator"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/component_padding">
-
-                <LinearLayout
-                    android:id="@+id/llCashier"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        style="@style/editText"
-                        android:id="@+id/edtCashier"
-                        android:layout_weight="1"
-                        android:layout_marginRight="@dimen/component_margin"
-                        android:hint="@string/text_hint_cashier"/>
-
-                    <Button
-                        style="@style/button"
-                        android:id="@+id/btnCashier"
-                        android:text="@string/text_edit" />
-
-                </LinearLayout>
-
-                <View
-                    style="@style/separator"
-                    android:layout_below="@+id/llCashier"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/component_padding">
-
-                <LinearLayout
-                    android:id="@+id/llVersion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        style="@style/editText"
-                        android:id="@+id/edtVersion"
-                        android:layout_weight="1"
-                        android:layout_marginRight="@dimen/component_margin"
-                        android:hint="@string/text_hint_version"/>
-
-                    <Button
-                        style="@style/button"
-                        android:id="@+id/btnVersion"
-                        android:text="@string/text_edit" />
-
-                </LinearLayout>
-
-                <View
-                    style="@style/separator"
-                    android:layout_below="@+id/llVersion"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/component_padding">
+                android:layout_marginTop="@dimen/component_margin">
 
                 <Button
                     style="@style/button"
