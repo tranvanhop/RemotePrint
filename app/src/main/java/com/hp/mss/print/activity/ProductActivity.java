@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import android.view.MenuItem;
 
 import com.hp.mss.print.R;
 import com.hp.mss.print.dialog.ProductAddDialog;
+import com.hp.mss.print.fragment.TabFragmentProductListLayout;
+import com.hp.mss.print.fragment.TabFragmentSystemPrintLayout;
 import com.hp.mss.print.helper.SQLiteHandler;
 import com.hp.mss.print.model.Product;
 
@@ -43,6 +47,16 @@ public class ProductActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         db = new SQLiteHandler(this);
+
+        selectFragment();
+    }
+
+    public void selectFragment(){
+        TabFragmentProductListLayout fr = new TabFragmentProductListLayout();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentPlace, fr);
+        fragmentTransaction.commit();
     }
 
     @Override
