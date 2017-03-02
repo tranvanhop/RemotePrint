@@ -1,8 +1,11 @@
 package com.hp.mss.print.helper;
 
+import com.hp.mss.print.model.Unit;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 /**
  * Created by hop on 25/02/2017.
@@ -52,5 +55,15 @@ public class Utility {
         sb.append(HEX.charAt((b >> 4) & 0x0f))
                 .append(HEX.charAt(b & 0x0f));
 
+    }
+
+    public static int getPositionUnit(ArrayList<Unit> units, int unitId){
+        for (int i = 0; i < units.size(); i++)
+        {
+            if(units.get(i).getId() == unitId)
+                return i;
+        }
+
+        return -1;
     }
 }

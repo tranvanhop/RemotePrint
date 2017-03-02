@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/light_gradient_bg"
+    android:padding="@dimen/padding_component"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_component">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/HPFontColorBlue"
+            android:textSize="@dimen/text_font_size_product_title"
+            android:text="@string/title_product_list"/>
+
+        <Button
+            style="@style/button"
+            android:layout_alignParentEnd="true"
+            android:text="@string/button_add_unit"
+            android:padding="@dimen/padding_component"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lvProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/product_list_divider"
+            android:dividerHeight="@dimen/height_separator">
+        </ListView>
+
+    </RelativeLayout>
+
+</LinearLayout>

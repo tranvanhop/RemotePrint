@@ -67,6 +67,8 @@
     <color name="button_enabled_end">#6b8e23</color>
     <color name="button_enabled_stroke">#FFFFFF</color>
 
-
+    <color name="product_name">#222222</color>
+    <color name="product_list">#EEEEEE</color>
+    <color name="product_list_divider">#CCCCCC</color>
 
 </resources>

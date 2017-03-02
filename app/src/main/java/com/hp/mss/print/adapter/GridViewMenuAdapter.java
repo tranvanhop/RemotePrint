@@ -18,13 +18,13 @@ import java.util.ArrayList;
  * Created by hop on 24/02/2017.
  */
 
-public class GridViewAdapter extends ArrayAdapter<MenuItem>{
+public class GridViewMenuAdapter extends ArrayAdapter<MenuItem>{
 
     Context context;
     int layoutResourceId;
     ArrayList<MenuItem> data = new ArrayList<MenuItem>();
 
-    public GridViewAdapter(Context context, int layoutResourceId, ArrayList<MenuItem> data) {
+    public GridViewMenuAdapter(Context context, int layoutResourceId, ArrayList<MenuItem> data) {
         super(context, layoutResourceId, data);
         this.context = context;
         this.layoutResourceId = layoutResourceId;

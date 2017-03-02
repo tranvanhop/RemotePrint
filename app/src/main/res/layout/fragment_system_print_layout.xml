@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/activity_vertical_margin">
+    android:padding="@dimen/margin_activity_vertical">
 
     <Spinner
         android:id="@+id/spDevice"
@@ -14,16 +14,16 @@
     <View
         android:id="@+id/separator"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/separator"
+        android:layout_height="@dimen/height_separator"
         android:layout_below="@+id/spDevice"
-        android:layout_marginTop="@dimen/separator_margin"
+        android:layout_marginTop="@dimen/margin_separator"
         android:background="@color/TextColorGrey"/>
 
     <ImageView
         android:id="@+id/imgPreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/button_style_padding"
+        android:padding="@dimen/padding_button_style"
         android:visibility="gone"
         android:layout_below="@+id/separator"/>
 
@@ -32,7 +32,7 @@
         android:id="@+id/edtPrint"
         android:layout_width="match_parent"
         android:layout_below="@+id/imgPreview"
-        android:padding="@dimen/component_padding"
+        android:padding="@dimen/padding_component"
         android:hint="@string/app_name">
 
     </EditText>
@@ -50,7 +50,7 @@
         style="@style/button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="@dimen/button_margin"
+        android:layout_marginRight="@dimen/margin_button"
         android:textSize="@dimen/text_font_size_device"
         android:text="@string/text_scan"/>
 

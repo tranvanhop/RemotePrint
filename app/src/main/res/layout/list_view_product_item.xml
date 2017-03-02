@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_product_item"
+    android:padding="@dimen/padding_component"
+    android:background="@color/product_list"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="@dimen/width_product_item_thumbnail"
+        android:layout_height="match_parent"
+        android:id="@+id/imgThumbnail"
+        android:src="@mipmap/ic_product">
+    </ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/text_font_size_spinner_item_name"
+            android:textColor="@color/product_name"
+            android:text="@string/app_name">
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/imgBtnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/imgBtnDelete"
+            android:src="@drawable/ic_edit"/>
+
+        <ImageButton
+            android:id="@+id/imgBtnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_component"
+            android:src="@drawable/ic_delete"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

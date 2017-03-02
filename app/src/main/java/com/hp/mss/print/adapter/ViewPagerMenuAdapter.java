@@ -22,10 +22,10 @@ import java.util.List;
 /**
  * Created by panini on 2/25/16.
  */
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerMenuAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
-    public ViewPagerAdapter(FragmentManager manager) {
+    public ViewPagerMenuAdapter(FragmentManager manager) {
         super(manager);
     }
     @Override

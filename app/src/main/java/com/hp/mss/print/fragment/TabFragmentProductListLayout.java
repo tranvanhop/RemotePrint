@@ -12,41 +12,73 @@
 
 package com.hp.mss.print.fragment;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.ListView;
 
 import com.hp.mss.print.R;
-import com.hp.mss.print.activity.OrderActivity;
 import com.hp.mss.print.activity.ProductActivity;
-import com.hp.mss.print.activity.ReportActivity;
-import com.hp.mss.print.activity.SystemActivity;
-import com.hp.mss.print.adapter.GridViewAdapter;
-import com.hp.mss.print.item.MenuItem;
+import com.hp.mss.print.adapter.ListViewProductAdapter;
+import com.hp.mss.print.helper.SQLiteHandler;
+import com.hp.mss.print.helper.TAG;
+import com.hp.mss.print.model.Product;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
+import static com.hp.mss.print.activity.ProductActivity.TAG_FRAGMENT_PRODUCT_ADD;
+import static com.hp.mss.print.activity.ProductActivity.TAG_FRAGMENT_PRODUCT_LIST;
 
-public class TabFragmentProductListLayout extends Fragment {
+public class TabFragmentProductListLayout extends Fragment{
+
+    ListView lvProduct;
+    ListViewProductAdapter adapter;
+
+    SQLiteHandler db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View inflatedView = inflater.inflate(R.layout.fragment_menu_layout, container, false);
+        View inflatedView = inflater.inflate(R.layout.fragment_product_list, container, false);
+
+        if (ProductActivity.menu != null)
+            ProductActivity.menu.findItem(R.id.actionAdd).setVisible(true);
+
+        db = new SQLiteHandler(getActivity());
+
+        init(inflatedView);
 
         return inflatedView;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
+    private void init(View v){
+        lvProduct = (ListView) v.findViewById(R.id.lvProduct);
+        ArrayList<Product> products = db.getAllProduct();
+        adapter = new ListViewProductAdapter(getActivity(), R.layout.list_view_product_item, products, mListener);
+        lvProduct.setAdapter(adapter);
+    }
+
+    OnListenerClick mListener = new OnListenerClick() {
+        @Override
+        public void onClickEdit(Product p) {
+
+            TabFragmentProductAddLayout fr = new TabFragmentProductAddLayout();
+            Bundle b = new Bundle();
+            b.putInt(TAG.ID, p.getId());
+            fr.setArguments(b);
+
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragmentReplace, fr, TAG_FRAGMENT_PRODUCT_ADD);
+            transaction.addToBackStack(TAG_FRAGMENT_PRODUCT_LIST);
+            transaction.commit();
+        }
+    };
+
+    public interface OnListenerClick{
+        public abstract void onClickEdit(Product p);
     }
 }

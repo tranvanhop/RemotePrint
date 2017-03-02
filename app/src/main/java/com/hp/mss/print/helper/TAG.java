@@ -15,4 +15,7 @@ public class TAG {
     public static String CREATE_AT = "create_at";
 
     public static String TEXT_PRINT = "text_print";
+
+    public static String PRODUCT = "product";
+    public static String ID = "id";
 }

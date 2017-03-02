@@ -20,7 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.hp.mss.print.R;
-import com.hp.mss.print.adapter.ViewPagerAdapter;
+import com.hp.mss.print.adapter.ViewPagerMenuAdapter;
 import com.hp.mss.print.fragment.TabFragmentMenuLayout;
 
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerMenuAdapter adapter = new ViewPagerMenuAdapter(getSupportFragmentManager());
         menuLayoutFragment = new TabFragmentMenuLayout();
         adapter.addFrag(menuLayoutFragment, getResources().getString(R.string.print_settings));
         viewPager.setAdapter(adapter);

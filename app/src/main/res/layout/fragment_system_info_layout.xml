@@ -12,7 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/component_padding"
+            android:padding="@dimen/padding_component"
             android:orientation="vertical">
 
             <EditText
@@ -28,7 +28,7 @@
                 style="@style/editText"
                 android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/component_margin"
+                android:layout_marginTop="@dimen/margin_component"
                 android:hint="@string/text_hint_address"/>
 
             <View
@@ -38,7 +38,7 @@
                 style="@style/editText"
                 android:id="@+id/edtCashier"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/component_margin"
+                android:layout_marginTop="@dimen/margin_component"
                 android:hint="@string/text_hint_cashier"/>
 
             <View
@@ -48,7 +48,7 @@
                 style="@style/editText"
                 android:id="@+id/edtVersion"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/component_margin"
+                android:layout_marginTop="@dimen/margin_component"
                 android:hint="@string/text_hint_version"/>
 
             <View
@@ -57,13 +57,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/component_margin">
+                android:layout_marginTop="@dimen/margin_component">
 
                 <Button
                     style="@style/button"
                     android:id="@+id/btnCancel"
                     android:layout_toLeftOf="@+id/btnSave"
-                    android:layout_marginRight="@dimen/component_margin"
+                    android:layout_marginRight="@dimen/margin_component"
                     android:text="@string/text_cancel" />
 
                 <Button

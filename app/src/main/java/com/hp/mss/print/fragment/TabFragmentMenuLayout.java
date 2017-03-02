@@ -29,7 +29,7 @@ import com.hp.mss.print.activity.OrderActivity;
 import com.hp.mss.print.activity.ProductActivity;
 import com.hp.mss.print.activity.ReportActivity;
 import com.hp.mss.print.activity.SystemActivity;
-import com.hp.mss.print.adapter.GridViewAdapter;
+import com.hp.mss.print.adapter.GridViewMenuAdapter;
 import com.hp.mss.print.item.MenuItem;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class TabFragmentMenuLayout extends Fragment {
 
     GridView gridViewMenu;
     ArrayList<MenuItem> gridListMenu = new ArrayList<MenuItem>();
-    GridViewAdapter gridViewAdapter;
+    GridViewMenuAdapter gridViewAdapter;
 
     static final int POSITION_SYSTEM = 0;
     static final int POSITION_PRODUCT = 1;
@@ -54,7 +54,7 @@ public class TabFragmentMenuLayout extends Fragment {
         setGridListMenu();
 
         gridViewMenu = (GridView) inflatedView.findViewById(R.id.gridViewMenu);
-        gridViewAdapter = new GridViewAdapter(getActivity(), R.layout.grid_view_menu_item, gridListMenu);
+        gridViewAdapter = new GridViewMenuAdapter(getActivity(), R.layout.grid_view_menu_item, gridListMenu);
         gridViewMenu.setAdapter(gridViewAdapter);
 
         gridViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {

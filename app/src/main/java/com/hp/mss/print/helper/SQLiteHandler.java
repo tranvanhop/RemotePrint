@@ -44,8 +44,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 	private static final String KEY_COUNT = "count";
 	private static final String KEY_CREATED_AT = "created_at";
 
-	private static final String DEFAULT_PRODUCT_THUMBNAIL = "//android_asset/ic_product_thumbnail.png";
-	private static final String DEFAULT_PRODUCT_IMAGE = "//android_asset/ic_product_image.png";
+	private static final String DEFAULT_PRODUCT_THUMBNAIL = "/ic_product_thumbnail.png";
+	private static final String DEFAULT_PRODUCT_IMAGE = "/ic_product_image.png";
 	private static final String DEFAULT_PRODUCT_TAG = "Product";
 
 
@@ -418,6 +418,39 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 		}
 
 		return p;
+	}
+	public ArrayList<Product> getAllProduct() {
+		ArrayList<Product> products = new ArrayList<Product>();
+
+		try {
+			SQLiteDatabase db = this.getWritableDatabase();
+			String q = "SELECT * FROM " + TABLE_PRODUCT;
+			Cursor cursor = db.rawQuery(q, null);
+			if (cursor != null) {
+				if(cursor.moveToFirst()) {
+					do {
+						Product p = new Product(
+								cursor.getString(cursor.getColumnIndex(KEY_NAME)),
+								cursor.getFloat(cursor.getColumnIndex(KEY_PRICE)),
+								cursor.getInt(cursor.getColumnIndex(KEY_UNIT_ID)),
+								cursor.getString(cursor.getColumnIndex(KEY_TAG)),
+								cursor.getString(cursor.getColumnIndex(KEY_THUMBNAIL)),
+								cursor.getString(cursor.getColumnIndex(KEY_IMAGE))
+						);
+						p.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+						p.setCreateAt(cursor.getString(cursor.getColumnIndex(KEY_CREATED_AT)));
+
+						products.add(p);
+					}while (cursor.moveToNext());
+				}
+			}
+			db.close();
+		}catch (Exception e)
+		{
+
+		}
+
+		return products;
 	}
 	private ArrayList<Product> getProductByUnitId(int unitId) {
 		ArrayList<Product> products = new ArrayList<Product>();

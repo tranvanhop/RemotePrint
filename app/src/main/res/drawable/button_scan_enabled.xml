@@ -5,14 +5,14 @@
         android:startColor="@color/button_enabled_start"
         android:centerColor="@color/button_enabled_center"
         android:endColor="@color/button_enabled_end"
-        android:angle="@integer/button_style_angle"/>
+        android:angle="@integer/angle_button_style"/>
     <padding
-        android:top="@dimen/button_style_padding"
-        android:bottom="@dimen/button_style_padding" />
+        android:top="@dimen/padding_button_style"
+        android:bottom="@dimen/padding_button_style" />
     <corners
         android:radius="16dp" />
 
     <stroke
-        android:width="@dimen/button_style_stroke"
+        android:width="@dimen/stroke_button_style"
         android:color="@color/button_stroke" />
 </shape>

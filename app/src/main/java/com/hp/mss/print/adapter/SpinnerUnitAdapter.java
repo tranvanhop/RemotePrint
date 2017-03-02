@@ -72,4 +72,8 @@ public class SpinnerUnitAdapter extends ArrayAdapter<Unit>{
 
         return row;
     }
+
+    public int getPosition(Unit u){
+        return data.indexOf(u);
+    }
 }
