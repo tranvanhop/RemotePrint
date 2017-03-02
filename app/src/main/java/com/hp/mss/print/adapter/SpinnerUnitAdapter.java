@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.hp.mss.print.R;
+import com.hp.mss.print.dialog.UnitDialog;
 import com.hp.mss.print.item.DeviceItem;
 import com.hp.mss.print.model.Unit;
 
@@ -36,6 +38,7 @@ public class SpinnerUnitAdapter extends ArrayAdapter<Unit>{
 
     static class RecordHolder {
         TextView txtName;
+        ImageButton imgBtnDelete;
         int id;
     }
 
@@ -49,7 +52,7 @@ public class SpinnerUnitAdapter extends ArrayAdapter<Unit>{
         return getCustomView(position, convertView, parent);
     }
 
-    public View getCustomView(int position, View convertView, ViewGroup parent) {
+    public View getCustomView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
         RecordHolder holder = null;
         viewGroup = parent;
@@ -60,13 +63,14 @@ public class SpinnerUnitAdapter extends ArrayAdapter<Unit>{
 
             holder = new RecordHolder();
             holder.txtName = (TextView) row.findViewById(R.id.txtName);
+            holder.imgBtnDelete = (ImageButton) row.findViewById(R.id.imgBtnDelete);
 
             row.setTag(holder);
         }
         else
             holder = (RecordHolder) row.getTag();
 
-        Unit item = data.get(position);
+        final Unit item = data.get(position);
         holder.txtName.setText(item.getName());
         holder.id = item.getId();
 

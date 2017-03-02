@@ -9,14 +9,7 @@
         style="@style/editText"
         android:id="@+id/edtName"
         android:layout_width="match_parent"
+        android:hint="@string/text_hint_unit_name"
+        android:background="@color/HPLightGreyBackground"
         android:inputType="text"/>
-
-    <EditText
-        style="@style/editText"
-        android:id="@+id/edtTag"
-        android:layout_width="match_parent"
-        android:inputType="text"/>
-
-
-    
 </LinearLayout>

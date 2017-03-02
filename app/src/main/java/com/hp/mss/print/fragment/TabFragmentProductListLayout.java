@@ -13,13 +13,13 @@
 package com.hp.mss.print.fragment;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.hp.mss.print.R;
 import com.hp.mss.print.activity.ProductActivity;
@@ -28,7 +28,6 @@ import com.hp.mss.print.helper.SQLiteHandler;
 import com.hp.mss.print.helper.TAG;
 import com.hp.mss.print.model.Product;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import static com.hp.mss.print.activity.ProductActivity.TAG_FRAGMENT_PRODUCT_ADD;
@@ -62,7 +61,7 @@ public class TabFragmentProductListLayout extends Fragment{
         lvProduct.setAdapter(adapter);
     }
 
-    OnListenerClick mListener = new OnListenerClick() {
+    OnListenerProductEvent mListener = new OnListenerProductEvent() {
         @Override
         public void onClickEdit(Product p) {
 
@@ -76,9 +75,21 @@ public class TabFragmentProductListLayout extends Fragment{
             transaction.addToBackStack(TAG_FRAGMENT_PRODUCT_LIST);
             transaction.commit();
         }
+
+        @Override
+        public void onClickDelete(Product p) {
+            if(db.deleteProduct(p) != -1){
+                adapter.remove(p);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(getActivity(), R.string.message_product_delete_success, Toast.LENGTH_LONG).show();
+            }
+            else
+                Toast.makeText(getActivity(), R.string.message_product_delete_error, Toast.LENGTH_LONG).show();
+        }
     };
 
-    public interface OnListenerClick{
+    public interface OnListenerProductEvent {
         public abstract void onClickEdit(Product p);
+        public abstract void onClickDelete(Product p);
     }
 }

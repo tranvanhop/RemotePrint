@@ -217,12 +217,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 	}
 
 	public int deleteUnit(Unit u){
-		SQLiteDatabase db = this.getWritableDatabase();
-
-		int result = 0;
+		int result = -1;
 
 		ArrayList<Product> products = getProductByUnitId(u.getId());
 		if(products.size() == 0) {
+			SQLiteDatabase db = this.getWritableDatabase();
 			result = db.delete(TABLE_UNIT, KEY_ID + " = ?",
 					new String[]{String.valueOf(u.getId())});
 			db.close();
@@ -231,13 +230,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 		return result;
 	}
 	public int deleteProduct(Product p){
-		SQLiteDatabase db = this.getWritableDatabase();
 
-		int result = 0;
+		int result = -1;
 
 		ArrayList<OrderProduct> ops = getOrderProductByProductId(p.getId());
 		if (ops.size() == 0){
-			db.delete(TABLE_PRODUCT, KEY_ID + " = ?",
+			SQLiteDatabase db = this.getWritableDatabase();
+			result = db.delete(TABLE_PRODUCT, KEY_ID + " = ?",
 					new String[] { String.valueOf(p.getId()) });
 			db.close();
 		}
@@ -245,9 +244,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 		return result;
 	}
 	public int deleteOrder(Order o){
-		SQLiteDatabase db = this.getWritableDatabase();
 
 		ArrayList<OrderProduct> ops = getOrderProductByOrderId(o.getId());
+		SQLiteDatabase db = this.getWritableDatabase();
+
 		if(ops.size() > 0){
 			for (OrderProduct op : ops)
 				deleteOrderProduct(op);

@@ -126,5 +126,7 @@
 
     <string name="button_choose">Chọn ảnh</string>
     <string name="button_add_unit">Thêm đơn vị</string>
+    <string name="text_unit_add">Thêm đơn vị</string>
+    <string name="text_hint_unit_name">Tên</string>
 
 </resources>

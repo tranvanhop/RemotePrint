@@ -187,7 +187,7 @@ public class TabFragmentSystemPrintLayout extends Fragment {
                 public void onClick(View arg0) {
 //                    InputTextDialog dialog = new InputTextDialog(getActivity(), new InputTextDialog.OnListener() {
 //                        @Override
-//                        public void onPrintClick(String text) {
+//                        public void onSaveUnit(String text) {
 //                            printText(text);
 //                        }
 //                    });

@@ -18,12 +18,12 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent intent) {
 
         String status = NetworkUtil.getConnectivityStatusString(context);
-        Toast.makeText(context, status, Toast.LENGTH_LONG).show();
         if(LoginActivity.btnSubmit != null)
         {
             switch (NetworkUtil.getConnectivityStatus(context))
             {
                 case NetworkUtil.TYPE_NOT_CONNECTED:
+                    Toast.makeText(context, status, Toast.LENGTH_LONG).show();
                     LoginActivity.btnSubmit.setVisibility(View.INVISIBLE);
                     break;
                 case NetworkUtil.TYPE_MOBILE:

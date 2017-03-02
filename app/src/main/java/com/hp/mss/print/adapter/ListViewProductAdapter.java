@@ -6,26 +6,19 @@ import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hp.mss.print.R;
-import com.hp.mss.print.activity.ProductActivity;
 import com.hp.mss.print.fragment.TabFragmentProductListLayout;
 import com.hp.mss.print.helper.SQLiteHandler;
-import com.hp.mss.print.item.BluetoothItem;
 import com.hp.mss.print.model.Product;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,15 +35,15 @@ public class ListViewProductAdapter extends ArrayAdapter<Product> {
     int layoutResourceId;
     ViewGroup viewGroup;
     SQLiteHandler db;
-    TabFragmentProductListLayout.OnListenerClick mListener;
+    TabFragmentProductListLayout.OnListenerProductEvent mListener;
 
     public ListViewProductAdapter(Context context, int layoutResourceId, ArrayList<Product> data,
-                                  TabFragmentProductListLayout.OnListenerClick mListenner) {
+                                  TabFragmentProductListLayout.OnListenerProductEvent mListener) {
         super(context, layoutResourceId, data);
         this.context = context;
         this.data = data;
         this.layoutResourceId = layoutResourceId;
-        this.mListener = mListenner;
+        this.mListener = mListener;
 
         db = new SQLiteHandler(context);
     }
@@ -121,13 +114,8 @@ public class ListViewProductAdapter extends ArrayAdapter<Product> {
                         {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(db.deleteProduct(data.get(position)) == 1){
-                                    Toast.makeText(context, R.string.message_product_delete_success, Toast.LENGTH_LONG).show();
-                                }
-                                else
-                                    Toast.makeText(context, R.string.message_product_delete_error, Toast.LENGTH_LONG).show();
+                                mListener.onClickDelete(item);
                             }
-
                         })
                         .setNegativeButton(context.getResources().getString(R.string.no), null)
                         .show();

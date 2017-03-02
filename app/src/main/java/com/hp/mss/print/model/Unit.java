@@ -5,7 +5,7 @@ package com.hp.mss.print.model;
  */
 
 public class Unit {
-    int id;
+    int id = 0;
     String name;
 
     public Unit(String name) {

@@ -12,6 +12,7 @@
 
 package com.hp.mss.print.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -24,11 +25,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -38,12 +40,12 @@ import android.widget.Toast;
 import com.hp.mss.print.R;
 import com.hp.mss.print.activity.ProductActivity;
 import com.hp.mss.print.adapter.SpinnerUnitAdapter;
+import com.hp.mss.print.dialog.UnitDialog;
 import com.hp.mss.print.helper.SQLiteHandler;
 import com.hp.mss.print.helper.TAG;
 import com.hp.mss.print.helper.Utility;
 import com.hp.mss.print.model.Product;
 import com.hp.mss.print.model.Unit;
-import com.hp.mss.print.util.Util;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -76,6 +78,8 @@ public class TabFragmentProductAddLayout extends Fragment{
     private SQLiteHandler db;
     private int id = 0;
 
+    private Unit uOther;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflatedView = inflater.inflate(R.layout.fragment_product_add, container, false);
@@ -95,9 +99,11 @@ public class TabFragmentProductAddLayout extends Fragment{
         edtPrice = (EditText) view.findViewById(R.id.edtPrice);
 
         spUnit = (Spinner) view.findViewById(R.id.spUnit);
+        uOther = new Unit("Other");
         db = new SQLiteHandler(getActivity());
-        ArrayList<Unit> units = db.getAllUnit();
-        SpinnerUnitAdapter spinnerAdapter = new SpinnerUnitAdapter(getActivity(), R.layout.spinner_unit_item, units);
+        final ArrayList<Unit> units = db.getAllUnit();
+        units.add(uOther);
+        final SpinnerUnitAdapter spinnerAdapter = new SpinnerUnitAdapter(getActivity(), R.layout.spinner_unit_item, units);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spUnit.setAdapter(spinnerAdapter);
 
@@ -229,17 +235,74 @@ public class TabFragmentProductAddLayout extends Fragment{
         }else{
             spUnit.setBackgroundDrawable(spinnerDrawable);
         }
+
+        spUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
+                if(position == spinnerAdapter.getCount() - 1)
+                {
+                    UnitDialog dialog = new UnitDialog(getActivity(), new UnitDialog.OnListenerUnitEvent() {
+
+                        @Override
+                        public void onSaveUnit(Unit u) {
+                            int unitId = (int)db.addUnit(u);
+                            if(unitId != -1) {
+                                u.setId(unitId);
+                                spinnerAdapter.remove(uOther);
+                                spinnerAdapter.add(u);
+                                spinnerAdapter.add(uOther);
+                                spinnerAdapter.notifyDataSetChanged();
+                                spUnit.setSelection(position);
+                            }
+                        }
+                    });
+
+                    dialog.show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spUnit.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                new AlertDialog.Builder(getActivity())
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Cảnh báo")
+                        .setMessage(getActivity().getResources().getString(R.string.message_warning_delete))
+                        .setPositiveButton(getActivity().getResources().getString(R.string.yes), new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Unit u = spinnerAdapter.getItem(position);
+                                if(db.deleteUnit(spinnerAdapter.getItem(position)) != -1){
+                                    spinnerAdapter.remove(u);
+                                    spinnerAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                        })
+                        .setNegativeButton(getActivity().getResources().getString(R.string.no), null)
+                        .show();
+
+                return true;
+            }
+        });
     }
 
     private void onClickChooseImage(int type){
-        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        getIntent.setType("image/*");
+//        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//        getIntent.setType("image/*");
 
         Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         pickIntent.setType("image/*");
 
-        Intent chooserIntent = Intent.createChooser(getIntent, getActivity().getResources().getString(R.string.text_choose));
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+        Intent chooserIntent = Intent.createChooser(pickIntent, getActivity().getResources().getString(R.string.text_choose));
+//        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
 
         startActivityForResult(chooserIntent, type);
     }
@@ -268,12 +331,14 @@ public class TabFragmentProductAddLayout extends Fragment{
                     String filePath = cursor.getString(columnIndex);
                     cursor.close();
 
-                    Bitmap b = BitmapFactory.decodeFile(filePath);
-                    imgThumbnail.setImageBitmap(b);
+                    if(filePath != null && filePath.length() > 0){
+                        Bitmap b = BitmapFactory.decodeFile(filePath);
+                        imgThumbnail.setImageBitmap(b);
 
-                    String filename = filePath.substring(filePath.lastIndexOf("/")+1);
-                    txtTempThumbnail.setText(filename);
-                    txtThumbnail.setText(filePath);
+                        String filename = filePath.substring(filePath.lastIndexOf("/")+1);
+                        txtTempThumbnail.setText(filename);
+                        txtThumbnail.setText(filePath);
+                    }
                 }
                 break;
             case PICK_IMAGE:
@@ -289,12 +354,14 @@ public class TabFragmentProductAddLayout extends Fragment{
                     String filePath = cursor.getString(columnIndex);
                     cursor.close();
 
-                    Bitmap b = BitmapFactory.decodeFile(filePath);
-                    imgImage.setImageBitmap(b);
+                    if(filePath != null && filePath.length() > 0){
+                        Bitmap b = BitmapFactory.decodeFile(filePath);
+                        imgImage.setImageBitmap(b);
 
-                    String filename = filePath.substring(filePath.lastIndexOf("/")+1);
-                    txtTempImage.setText(filename);
-                    txtImage.setText(filePath);
+                        String filename = filePath.substring(filePath.lastIndexOf("/")+1);
+                        txtTempImage.setText(filename);
+                        txtImage.setText(filePath);
+                    }
                 }
                 break;
         }
