@@ -16,15 +16,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/HPFontColorBlue"
             android:textSize="@dimen/text_font_size_product_title"
             android:text="@string/title_product_list"/>
-
-        <Button
-            style="@style/button"
-            android:layout_alignParentEnd="true"
-            android:text="@string/button_add_unit"
-            android:padding="@dimen/padding_component"/>
 
     </RelativeLayout>
 
